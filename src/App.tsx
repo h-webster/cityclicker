@@ -1,14 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import './App.css'
 import Shop from './components/Shop.tsx';
 import { useGame } from './contexts/GameContext.tsx';
 import Enviroment from './components/Enviroment.tsx';
 import { useEnviroment } from './contexts/EnviromentContext.tsx';
-import type { Enviroment_Object } from './types/EnviromentTypes.tsx';
 
 function App() {
   const { money, setMoney, income } = useGame();
-  const { people, setPeople } = useEnviroment();
+  const { setPeople } = useEnviroment();
 
   const handleClick = () => {
     setMoney(prev => prev + 1);

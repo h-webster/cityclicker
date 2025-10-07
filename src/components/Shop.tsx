@@ -1,14 +1,13 @@
-import { ShopItems } from '../types/ShopType.tsx'
 import type { ShopItem } from '../types/ShopType.tsx';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useGame } from '../contexts/GameContext.tsx';
 import type { Enviroment_Object } from '../types/EnviromentTypes.tsx';
 import { useEnviroment } from '../contexts/EnviromentContext.tsx';
 
 export default function Shop() {
     const [isShopOpen, openShop] = useState(false);
-    const { money, setMoney, income, setIncome, upgrades, setUpgrades } = useGame();
-    const { people, setPeople } = useEnviroment();
+    const { money, setMoney, setIncome, upgrades, setUpgrades } = useGame();
+    const { setPeople } = useEnviroment();
 
     const buy = (item: ShopItem) => {
         if (money >= item.price) {
