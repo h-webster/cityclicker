@@ -5,15 +5,18 @@ import type { Enviroment_Object } from '../types/EnviromentTypes.tsx';
 interface EnviromentContextType {
     people: Enviroment_Object[];
     setPeople: React.Dispatch<React.SetStateAction<Enviroment_Object[]>>;
+    houses: Enviroment_Object[];
+    setHouses: React.Dispatch<React.SetStateAction<Enviroment_Object[]>>;
 }
 
 const EnviromentContext = createContext<EnviromentContextType | undefined>(undefined);
 
 export const EnviromentProvider = ({ children }: {children: ReactNode}) => {
   const [people, setPeople] = useState<Enviroment_Object[]>([]);
+  const [houses, setHouses] = useState<Enviroment_Object[]>([]);
 
   return (
-    <EnviromentContext.Provider value={{ people, setPeople }}>
+    <EnviromentContext.Provider value={{ people, setPeople, houses, setHouses }}>
       {children}
     </EnviromentContext.Provider>
   );

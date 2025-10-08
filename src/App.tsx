@@ -44,7 +44,12 @@ function App() {
     <>
       <Shop/>
       <div className="flex flex-col justify-center items-center h-screen gap-4">
-        <h1 className='text-3xl text-green-500'>${money.toFixed(1)}</h1>
+        <div className="flex items-center gap-1">
+          <h1 className='text-3xl text-green-500'>${money.toFixed(1)}</h1>
+          { income > 0 &&
+            <h2 className='text-2xl text-green-400'>(+${income}/s)</h2>
+          }
+        </div>
         <button className='border-none text-6xl bg-gray-200 p-20px w-1/6 h-1/8 rounded-full transition-all duration-300 text-green-500 ease-in-out hover:scale-110 hover:bg-green-500 hover:text-white' onClick={handleClick}>💰</button>
       </div>
       <Enviroment/>
