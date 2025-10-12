@@ -17,7 +17,8 @@ export const useEnviromentManager = () => {
                 id: Date.now(),
                 x: Math.random() * window.innerWidth - 20,
                 y: Math.random() * window.innerHeight - 20,
-                status: "idle"
+                status: "idle",
+                waitTime: 0
             };
             setPeople(prev => [...prev, newPerson]);
         } else if (name === "House") {
@@ -25,7 +26,8 @@ export const useEnviromentManager = () => {
                 id: Date.now(),
                 x: Math.random() * window.innerWidth - 50,
                 y: Math.random() * window.innerHeight - 50,
-                status: "idle"
+                status: "idle",
+                waitTime: 0
             };
             const position = getNonOverlapping();
             newHouse.x = position ? position.x : newHouse.x;

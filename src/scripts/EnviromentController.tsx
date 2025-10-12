@@ -9,17 +9,31 @@ export const useEnviromentController = () => {
         const interval = setInterval(() => {
           setPeople((prevPeople) =>
             prevPeople.map((p) => {
+                    if (p.waitTime <= 0) {
+                        // switch status
+                        if (p.status == "at-home") { 
+                            return {
+                                ...p,
+                                status: "idle",
+                                waitTime: Math.floor(Math.random() * 2000) + 300,
+                            };
+                        }
+                        else if (p.taken && p.status == "idle") { 
+                            return {
+                                ...p,
+                                status: "to-home",
+                            }
+                        }
+                    }
                 if (p.status === "idle") {
                     // Random small movement
-                    if (p.taken && Math.floor(Math.random() * 2000) + 1 < 3) {
-                        p.status = "to-home";
-                    }
                     const deltaX = (Math.random() - 0.5) * 10;
                     const deltaY = (Math.random() - 0.5) * 10;
                     return {
                         ...p,
                         x: Math.min(Math.max(p.x + deltaX, 0), window.innerWidth - 20),
                         y: Math.min(Math.max(p.y + deltaY, 0), window.innerHeight - 20),
+                        waitTime: p.waitTime - 1
                     };
                 }
                 else if (p.status == "to-home") {
@@ -58,7 +72,8 @@ export const useEnviromentController = () => {
                             ...p,
                             x: p.x + moveX,
                             y: p.y + moveY,
-                            status: "at-home"
+                            status: "at-home",
+                            waitTime: Math.floor(Math.random() * 1000) + 300,
                         }
                     }
                     return {
@@ -66,9 +81,11 @@ export const useEnviromentController = () => {
                         x: p.x + moveX,
                         y: p.y + moveY,
                     };
-                } else if (p.status === "at-home" && Math.floor(Math.random() * 1000) + 1 < 3) {
-                    p.status = "idle";
-                    // Person is at home, do nothing
+                } else if (p.status == "at-home") {
+                    return {
+                        ...p,
+                        waitTime: p.waitTime - 1,
+                    };
                 }
                 return p;
             })

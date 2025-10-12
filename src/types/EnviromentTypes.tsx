@@ -3,6 +3,7 @@ export interface Enviroment_Object {
     x: number;
     y: number;
     status: string;
+    waitTime: number;
     houseId?: number;
     taken?: boolean;
     targetX?: number;
