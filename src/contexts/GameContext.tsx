@@ -15,7 +15,7 @@ interface GameContextType {
 const GameContext = createContext<GameContextType | undefined>(undefined);
 
 export const GameProvider = ({ children }: {children: ReactNode}) => {
-  const [money, setMoney] = useState(10000);
+  const [money, setMoney] = useState(0);
   const [income, setIncome] = useState(0);
   const [upgrades, setUpgrades] = useState<ShopItem[]>(ShopItems);
 

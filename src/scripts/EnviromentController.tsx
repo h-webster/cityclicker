@@ -1,4 +1,3 @@
-import type { Enviroment_Object } from '../types/EnviromentTypes';
 import { useEnviroment } from '../contexts/EnviromentContext';
 import { useEffect } from 'react';
 
