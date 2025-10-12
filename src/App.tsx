@@ -14,27 +14,7 @@ function App() {
   }
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setPeople((prevPeople) =>
-        prevPeople.map((p) => {
-          // Random small movement
-          const deltaX = (Math.random() - 0.5) * 10;
-          const deltaY = (Math.random() - 0.5) * 10;
-          return {
-            ...p,
-            x: Math.min(Math.max(p.x + deltaX, 0), window.innerWidth - 20),
-            y: Math.min(Math.max(p.y + deltaY, 0), window.innerHeight - 20),
-          };
-        })
-      );
-    }, 100); // update every 100ms
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
     const incomeInterval = setInterval(() => {
-      console.log(`Gain money ${income}`);
       setMoney(prev => prev + (income / 10));
     }, 100);
     return () => clearInterval(incomeInterval);

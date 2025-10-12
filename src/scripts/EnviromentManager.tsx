@@ -1,25 +1,31 @@
 import type { Enviroment_Object } from '../types/EnviromentTypes';
 import { useEnviroment } from '../contexts/EnviromentContext';
+import { useEffect } from 'react';
+import { useEnviromentController } from './EnviromentController';
 
 export const useEnviromentManager = () => {
     const { setPeople, houses, setHouses } = useEnviroment();
 
     const HOUSE_SIZE = 50;
     const MAX_ATTEMPTS = 100;
-    
+
+    useEnviromentController();
+
     const newEnviromentObject = (name: string) => {
         if (name === "Citizen") {
             const newPerson: Enviroment_Object = {
                 id: Date.now(),
                 x: Math.random() * window.innerWidth - 20,
-                y: Math.random() * window.innerHeight - 20
+                y: Math.random() * window.innerHeight - 20,
+                status: "idle"
             };
             setPeople(prev => [...prev, newPerson]);
         } else if (name === "House") {
             const newHouse: Enviroment_Object = {
                 id: Date.now(),
                 x: Math.random() * window.innerWidth - 50,
-                y: Math.random() * window.innerHeight - 50
+                y: Math.random() * window.innerHeight - 50,
+                status: "idle"
             };
             const position = getNonOverlapping();
             newHouse.x = position ? position.x : newHouse.x;
