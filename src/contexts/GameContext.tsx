@@ -10,6 +10,8 @@ interface GameContextType {
   setIncome: React.Dispatch<React.SetStateAction<number>>;
   upgrades: ShopItem[];
   setUpgrades: React.Dispatch<React.SetStateAction<ShopItem[]>>;
+  happiness: number;
+  setHappiness: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -17,10 +19,11 @@ const GameContext = createContext<GameContextType | undefined>(undefined);
 export const GameProvider = ({ children }: {children: ReactNode}) => {
   const [money, setMoney] = useState(0);
   const [income, setIncome] = useState(0);
+  const [happiness, setHappiness] = useState(0.00);
   const [upgrades, setUpgrades] = useState<ShopItem[]>(ShopItems);
 
   return (
-    <GameContext.Provider value={{ money, setMoney, income, setIncome, upgrades, setUpgrades }}>
+    <GameContext.Provider value={{ money, setMoney, income, setIncome, upgrades, setUpgrades, happiness, setHappiness }}>
       {children}
     </GameContext.Provider>
   );
